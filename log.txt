@@ -1,0 +1,47 @@
+[2026-05-05 16:18:39] MediVault application started.
+[2026-05-05 16:18:55] Login failed — incorrect credentials entered.
+[2026-05-05 16:28:41] MediVault application started.
+[2026-05-05 16:28:43] MediVault application started.
+[2026-05-05 16:28:59] Login failed — incorrect credentials entered.
+[2026-05-05 16:30:05] MediVault application started.
+[2026-05-05 16:30:11] Login successful — user: admin
+[2026-05-05 16:30:27] Opened: Add Patient screen.
+[2026-05-05 16:30:39] ERROR: MySQL JDBC driver not found — com.mysql.cj.jdbc.Driver
+[2026-05-05 16:30:39] ERROR: addPatient — no DB connection available.
+[2026-05-05 16:40:55] MediVault application started.
+[2026-05-05 16:41:05] Login successful — user: admin
+[2026-05-05 16:41:07] Opened: Add Patient screen.
+[2026-05-05 16:41:23] Patient added successfully: name=manas, age=22, phone=123456789
+[2026-05-05 16:41:39] Opened: View Patients screen.
+[2026-05-05 16:41:39] Fetched 4 patient(s) from database.
+[2026-05-05 16:41:45] Fetched 4 patient(s) from database.
+[2026-05-05 16:42:02] MediVault application started.
+[2026-05-05 16:42:09] Login successful — user: admin
+[2026-05-05 16:42:11] Opened: Add Patient screen.
+[2026-05-05 16:42:13] Opened: View Patients screen.
+[2026-05-05 16:42:14] Fetched 4 patient(s) from database.
+[2026-05-05 16:42:14] Opened: View Patients screen.
+[2026-05-05 16:42:14] Fetched 4 patient(s) from database.
+[2026-05-05 16:42:17] Fetched 4 patient(s) from database.
+[2026-05-05 16:42:22] Application exited by user.
+[2026-05-05 16:44:55] MediVault application started.
+[2026-05-05 16:45:03] MediVault application started.
+[2026-05-05 17:19:46] MediVault application started.
+[2026-05-05 17:19:54] Login successful — user: admin
+[2026-05-05 17:33:29] MediVault application started.
+[2026-05-05 17:33:37] Login failed — invalid credentials for user: admin
+[2026-05-05 17:33:43] Login failed — invalid credentials for user: admin
+[2026-05-05 17:34:06] MediVault application started.
+[2026-05-05 17:34:14] Login failed — invalid credentials for user: admin
+[2026-05-05 17:39:35] MediVault application started.
+[2026-05-05 17:39:42] Login successful — user: admin | role: ADMIN
+[2026-05-05 17:39:47] Opened: View Patients screen.
+[2026-05-05 17:39:47] Fetched 4 patient(s) from database.
+[2026-05-05 17:40:15] Patient ID 1 deleted by ADMIN.
+[2026-05-05 17:40:18] Fetched 3 patient(s) from database.
+[2026-05-05 17:43:40] MediVault application started.
+[2026-05-05 17:43:51] Login successful — user: staff1 | role: STAFF
+[2026-05-05 17:43:52] Opened: Add Patient screen.
+[2026-05-05 17:43:59] Opened: View Patients screen.
+[2026-05-05 17:43:59] Fetched 3 patient(s) from database.
+[2026-05-05 17:44:09] Access Denied: Role 'STAFF' tried to delete ID 4

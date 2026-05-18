@@ -16,9 +16,9 @@ public class PatientService {
 
     private final PatientDAO patientDAO = new PatientDAO();
 
-    public boolean addPatient(String name, int age, String phone) {
-        validatePatientData(name, age, phone);
-        Patient patient = new Patient(name.trim(), age, phone.trim());
+    public boolean addPatient(String name, int age, String contact, String disease, String assignedDoctor) {
+        validatePatientData(name, age, contact, disease, assignedDoctor);
+        Patient patient = new Patient(name.trim(), age, contact.trim(), disease.trim(), assignedDoctor.trim());
         return patientDAO.addPatient(patient);
     }
 
@@ -26,34 +26,22 @@ public class PatientService {
         return patientDAO.getAllPatients();
     }
 
-    /**
-     * Deletes a patient with RBAC check.
-     * Wrapped in try-catch to handle SQLException from DAO.
-     */
     public boolean deletePatient(int id, String currentUserRole) {
         if (!"ADMIN".equalsIgnoreCase(currentUserRole)) {
             LogUtil.log("Access Denied: Role '" + currentUserRole + "' tried to delete ID " + id);
             throw new InvalidInputException("Access Denied: Only Admins can delete records.");
         }
-
         try {
-            boolean success = patientDAO.deletePatient(id);
-            if (success) LogUtil.log("Patient ID " + id + " deleted by ADMIN.");
-            return success;
+            return patientDAO.deletePatient(id);
         } catch (SQLException e) {
             LogUtil.log("Database Error during delete: " + e.getMessage());
-            throw new RuntimeException("Could not delete patient due to database error.");
+            throw new RuntimeException("Could not delete patient record.");
         }
     }
 
-    /**
-     * Updates patient details.
-     * Handles SQLException from DAO.
-     */
-    public boolean updatePatient(int id, String name, int age, String phone) {
-        validatePatientData(name, age, phone);
-
-        Patient patient = new Patient(id, name.trim(), age, phone.trim());
+    public boolean updatePatient(int id, String name, int age, String contact, String disease, String assignedDoctor, String status) {
+        validatePatientData(name, age, contact, disease, assignedDoctor);
+        Patient patient = new Patient(id, name.trim(), age, contact.trim(), disease.trim(), assignedDoctor.trim(), status.trim());
         try {
             return patientDAO.updatePatient(patient);
         } catch (SQLException e) {
@@ -62,15 +50,10 @@ public class PatientService {
         }
     }
 
-    /**
-     * Search operation.
-     * Handles SQLException from DAO and returns empty list if search fails.
-     */
     public List<Patient> searchPatients(String query) {
         if (query == null || query.trim().isEmpty()) {
             return getAllPatients();
         }
-
         try {
             return patientDAO.searchPatients(query.trim());
         } catch (SQLException e) {
@@ -79,18 +62,21 @@ public class PatientService {
         }
     }
 
-    /**
-     * Private helper to keep validation logic DRY (Don't Repeat Yourself).
-     */
-    private void validatePatientData(String name, int age, String phone) {
+    private void validatePatientData(String name, int age, String contact, String disease, String assignedDoctor) {
         if (name == null || name.trim().isEmpty()) {
             throw new InvalidInputException("Patient name cannot be empty.");
         }
         if (age < 1 || age > 150) {
             throw new InvalidInputException("Age must be between 1 and 150.");
         }
-        if (phone == null || phone.trim().isEmpty() || phone.trim().length() > 15) {
-            throw new InvalidInputException("Invalid phone number (max 15 chars).");
+        if (contact == null || contact.trim().isEmpty() || contact.trim().length() > 15) {
+            throw new InvalidInputException("Invalid contact number format.");
+        }
+        if (disease == null || disease.trim().isEmpty()) {
+            throw new InvalidInputException("Primary diagnosis description field is required.");
+        }
+        if (assignedDoctor == null || assignedDoctor.equals("-- Select Doctor --")) {
+            throw new InvalidInputException("A valid professional physician must be assigned.");
         }
     }
 }

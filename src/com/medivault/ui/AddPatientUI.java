@@ -1,156 +1,190 @@
 package com.medivault.ui;
 
-import com.medivault.exception.InvalidInputException;
 import com.medivault.service.PatientService;
 import com.medivault.util.LogUtil;
-
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * AddPatientUI.java — UI Layer: Add Patient Form
- *
- * Collects Name, Age, and Phone from the user.
- * Passes values to PatientService for validation and saving.
- *
- * [EXCEPTION HANDLING] used in handleSave():
- *   1. NumberFormatException  — age field contains non-numeric text (e.g. "abc")
- *   2. InvalidInputException  — service-layer validation rejected the data
- *   3. Exception (generic)    — safety net for any other unexpected error
- *
- * [FILE HANDLING] — errors and successes ultimately logged via LogUtil
- *                   (inside PatientService and PatientDAO).
+ * AddPatientUI.java — Refactored to match the modern split-screen design.
+ * Features new administrative inputs for entering a disease and assigning a doctor.
  */
 public class AddPatientUI extends JFrame {
 
-    private final PatientService service = new PatientService();
-
     private JTextField nameField;
     private JTextField ageField;
-    private JTextField phoneField;
+    private JTextField contactField;
+
+    private JTextField diseaseField;
+    private JComboBox<String> doctorDropdown;
+
+    private final PatientService service = new PatientService();
 
     public AddPatientUI() {
         buildUI();
     }
 
     private void buildUI() {
-        setTitle("MediVault — Add Patient");
-        setSize(370, 270);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // don't quit the whole app
+        setTitle("MediVault — Register New Patient");
+        setSize(850, 550);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(new Color(240, 245, 255));
-        panel.setBorder(BorderFactory.createEmptyBorder(18, 30, 18, 30));
-        GridBagConstraints g = new GridBagConstraints();
-        g.insets = new Insets(8, 8, 8, 8);
-        g.fill   = GridBagConstraints.HORIZONTAL;
+        // Split screen: 1 row, 2 columns layout
+        setLayout(new GridLayout(1, 2));
 
-        // ── Title ─────────────────────────────────────────────────
-        JLabel title = new JLabel("Add New Patient", SwingConstants.CENTER);
-        title.setFont(new Font("SansSerif", Font.BOLD, 15));
-        title.setForeground(new Color(30, 90, 160));
-        g.gridx = 0; g.gridy = 0; g.gridwidth = 2;
-        panel.add(title, g);
-        g.gridwidth = 1;
+        // ==========================================
+        //  LEFT PANEL: Aesthetic Decorative Accent
+        // ==========================================
+        JPanel leftPanel = new JPanel(new GridBagLayout());
 
-        // ── Name ──────────────────────────────────────────────────
-        g.gridy = 1; g.gridx = 0; panel.add(new JLabel("Name:"),  g);
-        nameField = new JTextField(15);
-        g.gridx = 1; panel.add(nameField, g);
+        // CHANGED: Swapped out the old action green for the official MediVault Dark Blue brand color
+        leftPanel.setBackground(new Color(30, 90, 160));
 
-        // ── Age ───────────────────────────────────────────────────
-        g.gridy = 2; g.gridx = 0; panel.add(new JLabel("Age:"),   g);
-        ageField = new JTextField(15);
-        g.gridx = 1; panel.add(ageField, g);
+        GridBagConstraints leftGbc = new GridBagConstraints();
+        leftGbc.gridx = 0; leftGbc.gridy = 0;
+        leftGbc.insets = new Insets(10, 20, 10, 20);
 
-        // ── Phone ─────────────────────────────────────────────────
-        g.gridy = 3; g.gridx = 0; panel.add(new JLabel("Phone:"), g);
-        phoneField = new JTextField(15);
-        g.gridx = 1; panel.add(phoneField, g);
+        JLabel sideTitle = new JLabel("Patient Intake");
+        sideTitle.setFont(new Font("SansSerif", Font.BOLD, 32));
+        sideTitle.setForeground(Color.WHITE);
+        leftPanel.add(sideTitle, leftGbc);
 
-        // ── Buttons ───────────────────────────────────────────────
-        JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
-        btnRow.setBackground(new Color(240, 245, 255));
+        leftGbc.gridy = 1;
+        JLabel sideSub = new JLabel("Administrative Admission Portal");
+        sideSub.setFont(new Font("SansSerif", Font.PLAIN, 14));
 
-        JButton saveBtn  = new JButton("Save");
-        JButton clearBtn = new JButton("Clear");
-        LoginUI.styleButton(saveBtn,  new Color(34, 130, 34));
-        LoginUI.styleButton(clearBtn, new Color(110, 110, 110));
-        saveBtn.setPreferredSize(new Dimension(85, 30));
-        clearBtn.setPreferredSize(new Dimension(85, 30));
+        // CHANGED: Matched text color tone dynamically to the new blue background palette
+        sideSub.setForeground(new Color(200, 220, 245));
+        leftPanel.add(sideSub, leftGbc);
+
+        // ==========================================
+        //  RIGHT PANEL: Clean Dual-Column Input Form
+        // ==========================================
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setBackground(Color.WHITE);
+        formPanel.setBorder(BorderFactory.createEmptyBorder(30, 35, 30, 35));
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 8, 10, 8);
+
+        // Form Header Text
+        JLabel formHeader = new JLabel("Admission Details");
+        formHeader.setFont(new Font("SansSerif", Font.BOLD, 22));
+        formHeader.setForeground(new Color(50, 50, 50));
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
+        formPanel.add(formHeader, gbc);
+
+        // Reset grid width rules for standard form rows
+        gbc.gridwidth = 1;
+
+        // Row 1: Patient Name
+        gbc.gridy = 1; gbc.gridx = 0;
+        formPanel.add(new JLabel("Full Name:"), gbc);
+        nameField = createStyledTextField();
+        gbc.gridx = 1; formPanel.add(nameField, gbc);
+
+        // Row 2: Age
+        gbc.gridy = 2; gbc.gridx = 0;
+        formPanel.add(new JLabel("Age:"), gbc);
+        ageField = createStyledTextField();
+        gbc.gridx = 1; formPanel.add(ageField, gbc);
+
+        // Row 3: Contact Phone Number
+        gbc.gridy = 3; gbc.gridx = 0;
+        formPanel.add(new JLabel("Contact No:"), gbc);
+        contactField = createStyledTextField();
+        gbc.gridx = 1; formPanel.add(contactField, gbc);
+
+        // Row 4: NEW DISEASE FIELD
+        gbc.gridy = 4; gbc.gridx = 0;
+        formPanel.add(new JLabel("Diagnosis / Disease:"), gbc);
+        diseaseField = createStyledTextField();
+        diseaseField.setToolTipText("Enter primary diagnosis details");
+        gbc.gridx = 1; formPanel.add(diseaseField, gbc);
+
+        // Row 5: NEW ASSIGNED DOCTOR DROPDOWN
+        gbc.gridy = 5; gbc.gridx = 0;
+        formPanel.add(new JLabel("Assign Practitioner:"), gbc);
+        doctorDropdown = new JComboBox<>(new String[]{
+                "-- Select Doctor --", "Dr. Arsh Sharma", "Dr. Shalini Katoch", "Dr. Rahul Verma", "Dr. Neha Thakur"
+        });
+        doctorDropdown.setPreferredSize(new Dimension(0, 32));
+        doctorDropdown.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        gbc.gridx = 1; formPanel.add(doctorDropdown, gbc);
+
+        // Action Buttons Row (Save and Clear)
+        JPanel btnRow = new JPanel(new GridLayout(1, 2, 15, 0));
+        btnRow.setBackground(Color.WHITE);
+
+        JButton saveBtn = new JButton("Save Record");
+        LoginUI.styleButton(saveBtn, new Color(30, 90, 160)); // Swapped button color to theme blue!
+
+        JButton clearBtn = new JButton("Clear Form");
+        LoginUI.styleButton(clearBtn, new Color(120, 130, 140));
+
         btnRow.add(saveBtn);
         btnRow.add(clearBtn);
 
-        g.gridy = 4; g.gridx = 0; g.gridwidth = 2;
-        panel.add(btnRow, g);
+        gbc.gridy = 6; gbc.gridx = 0; gbc.gridwidth = 2;
+        gbc.insets = new Insets(25, 8, 5, 8);
+        formPanel.add(btnRow, gbc);
 
-        add(panel);
+        // Assemble pieces into main window Frame
+        add(leftPanel);
+        add(formPanel);
 
-        saveBtn.addActionListener(e  -> handleSave());
-        clearBtn.addActionListener(e -> clearFields());
+        // Event Listeners
+        clearBtn.addActionListener(e -> clearFormFields());
+        saveBtn.addActionListener(e -> handlePatientRegistration());
     }
 
-    /**
-     * Reads form values, parses age, then calls the service layer.
-     *
-     * [EXCEPTION HANDLING — three layers]:
-     *   1. NumberFormatException: Integer.parseInt fails when age is not a number.
-     *   2. InvalidInputException: service rejects blank/out-of-range values.
-     *   3. Exception (generic) : unexpected runtime problem.
-     */
-    private void handleSave() {
-        String name    = nameField.getText();
-        String ageText = ageField.getText().trim();
-        String phone   = phoneField.getText();
+    private JTextField createStyledTextField() {
+        JTextField field = new JTextField(15);
+        field.setPreferredSize(new Dimension(0, 32));
+        field.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        return field;
+    }
 
-        // ── 1. Parse age — may throw NumberFormatException ────────
-        int age;
-        try {
-            age = Integer.parseInt(ageText);
-        } catch (NumberFormatException e) {
-            // [EXCEPTION HANDLING] user typed letters in the age field
-            LogUtil.log("Invalid input: age is not a number — '" + ageText + "'");
-            JOptionPane.showMessageDialog(this,
-                    "Age must be a whole number (e.g. 30).",
-                    "Invalid Input", JOptionPane.WARNING_MESSAGE);
-            ageField.requestFocus();
+    private void clearFormFields() {
+        nameField.setText("");
+        ageField.setText("");
+        contactField.setText("");
+        diseaseField.setText("");
+        doctorDropdown.setSelectedIndex(0);
+        nameField.requestFocus();
+    }
+
+    private void handlePatientRegistration() {
+        String name = nameField.getText().trim();
+        String ageStr = ageField.getText().trim();
+        String contact = contactField.getText().trim();
+        String disease = diseaseField.getText().trim();
+        String assignedDoc = (String) doctorDropdown.getSelectedItem();
+
+        if (name.isEmpty() || ageStr.isEmpty() || contact.isEmpty() || disease.isEmpty() || doctorDropdown.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Please fill in all clinical and administrative fields.", "Validation Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // ── 2. Call service — may throw InvalidInputException ──────
         try {
-            boolean ok = service.addPatient(name, age, phone);
-            if (ok) {
-                JOptionPane.showMessageDialog(this,
-                        "Patient added successfully!",
-                        "Success", JOptionPane.INFORMATION_MESSAGE);
-                clearFields();
+            int age = Integer.parseInt(ageStr);
+            boolean success = service.addPatient(name, age, contact, disease, assignedDoc);
+
+            if (success) {
+                LogUtil.log("Admin registered patient: " + name + " | Assigned to: " + assignedDoc);
+                JOptionPane.showMessageDialog(this, "Patient clinical profile saved successfully!", "Registration Success", JOptionPane.INFORMATION_MESSAGE);
+                clearFormFields();
+                dispose();
             } else {
-                JOptionPane.showMessageDialog(this,
-                        "Could not save patient.\nCheck the database connection.",
-                        "Database Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Database write operation failed.", "Execution Failure", JOptionPane.ERROR_MESSAGE);
             }
-
-        } catch (InvalidInputException e) {
-            // [EXCEPTION HANDLING] validation error from PatientService
-            JOptionPane.showMessageDialog(this,
-                    e.getMessage(), "Validation Error", JOptionPane.WARNING_MESSAGE);
-
-        } catch (Exception e) {
-            // [EXCEPTION HANDLING] unexpected error — log and inform user
-            LogUtil.log("ERROR: unexpected error in AddPatientUI — " + e.getMessage());
-            JOptionPane.showMessageDialog(this,
-                    "An unexpected error occurred:\n" + e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Age field must contain a valid numerical value.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Registration failed: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    private void clearFields() {
-        nameField.setText("");
-        ageField.setText("");
-        phoneField.setText("");
-        nameField.requestFocus();
     }
 }

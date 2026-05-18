@@ -45,3 +45,164 @@
 [2026-05-05 17:43:59] Opened: View Patients screen.
 [2026-05-05 17:43:59] Fetched 3 patient(s) from database.
 [2026-05-05 17:44:09] Access Denied: Role 'STAFF' tried to delete ID 4
+[2026-05-18 13:43:02] MediVault application started.
+[2026-05-18 13:43:11] ERROR: Database connection failed — Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+[2026-05-18 13:43:11] ERROR: unexpected error in LoginUI — Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-05-18 13:43:57] ERROR: Database connection failed — Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+[2026-05-18 13:43:57] ERROR: unexpected error in LoginUI — Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-05-18 13:44:01] ERROR: Database connection failed — Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+[2026-05-18 13:44:01] ERROR: unexpected error in LoginUI — Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-05-18 13:47:33] MediVault application started.
+[2026-05-18 13:47:41] Login successful — user: admin | role: ADMIN
+[2026-05-18 13:47:46] Opened: Add Patient screen.
+[2026-05-18 13:53:13] MediVault application started.
+[2026-05-18 13:53:24] Login successful — user: admin | role: ADMIN
+[2026-05-18 13:53:40] MediVault application started.
+[2026-05-18 13:56:59] MediVault application started.
+[2026-05-18 13:57:06] Login successful — user: admin | role: ADMIN
+[2026-05-18 13:57:13] Opened: Add Patient screen.
+[2026-05-18 13:57:30] Patient added successfully: name=rishav, age=22, phone=6230042678
+[2026-05-18 13:57:35] Opened: View Patients screen.
+[2026-05-18 13:57:35] Fetched 4 patient(s) from database.
+[2026-05-18 13:57:50] Application control session destroyed by user.
+[2026-05-18 13:57:59] Login successful — user: admin | role: ADMIN
+[2026-05-18 13:58:29] MediVault application started.
+[2026-05-18 14:00:10] MediVault application started.
+[2026-05-18 14:00:27] Login successful — user: admin | role: ADMIN
+[2026-05-18 14:00:36] Opened: Add Patient screen.
+[2026-05-18 14:00:42] Opened: View Patients screen.
+[2026-05-18 14:00:43] Fetched 4 patient(s) from database.
+[2026-05-18 14:00:59] Opened: Add Patient screen.
+[2026-05-18 14:07:48] MediVault application started.
+[2026-05-18 14:11:49] MediVault application started.
+[2026-05-18 14:12:01] Login successful — user: admin | role: ADMIN
+[2026-05-18 14:12:03] Opened: Add Patient screen.
+[2026-05-18 14:12:07] Opened: View Patients screen.
+[2026-05-18 14:12:07] Fetched 4 patient(s) from database.
+[2026-05-18 14:12:11] Fetched 4 patient(s) from database.
+[2026-05-18 14:12:17] Opened: Add Patient screen.
+[2026-05-18 14:18:02] MediVault application started.
+[2026-05-18 14:18:09] Login failed — invalid credentials for user: staff
+[2026-05-18 14:18:30] Login successful — user: staff1 | role: STAFF
+[2026-05-18 14:18:32] Opened: Add Patient screen.
+[2026-05-18 14:18:48] Patient added successfully: name=abc, age=43, phone=9524564455
+[2026-05-18 14:18:51] Opened: View Patients screen.
+[2026-05-18 14:18:51] Fetched 5 patient(s) from database.
+[2026-05-18 14:18:58] Access Denied: Role 'STAFF' tried to delete ID 6
+[2026-05-18 14:19:03] Opened: Add Patient screen.
+[2026-05-18 17:46:38] MediVault application started.
+[2026-05-18 17:46:59] Login successful — user: staff1 | role: STAFF
+[2026-05-18 17:47:01] Opened: Add Patient screen.
+[2026-05-18 17:47:04] Opened: View Patients screen.
+[2026-05-18 17:47:04] Fetched 5 patient(s) from database.
+[2026-05-18 17:47:10] Access Denied: Role 'STAFF' tried to delete ID 4
+[2026-05-18 17:57:33] MediVault application started.
+[2026-05-18 17:57:43] Login successful — user: admin | role: ADMIN
+[2026-05-18 17:57:47] Opened: Add Patient screen.
+[2026-05-18 17:57:50] Opened: View Patients screen.
+[2026-05-18 17:57:50] Fetched 5 patient(s) from database.
+[2026-05-18 17:59:32] Opened: View Patients screen.
+[2026-05-18 17:59:32] Fetched 5 patient(s) from database.
+[2026-05-18 18:14:01] MediVault application started.
+[2026-05-18 18:14:13] Login successful — user: admin | role: ADMIN
+[2026-05-18 18:14:16] Opened: Add Patient screen.
+[2026-05-18 18:14:25] Opened: Add Patient screen.
+[2026-05-18 18:14:29] Opened: View Patients screen.
+[2026-05-18 18:14:29] Fetched 5 patient(s) from database.
+[2026-05-18 18:16:09] Opened: View Patients screen.
+[2026-05-18 18:16:09] Fetched 5 patient(s) from database.
+[2026-05-18 18:16:17] Opened: View Patients screen.
+[2026-05-18 18:16:17] Fetched 5 patient(s) from database.
+[2026-05-18 18:25:00] MediVault application started.
+[2026-05-18 18:25:10] Login successful — user: admin | role: ADMIN
+[2026-05-18 18:39:58] MediVault application started.
+[2026-05-18 18:40:17] Login failed — invalid credentials for user: patient
+[2026-05-18 18:40:34] Login successful — user: patient1 | role: PATIENT
+[2026-05-18 18:40:40] Patient checked live doctor availability roster.
+[2026-05-18 18:40:46] Patient checked live doctor availability roster.
+[2026-05-18 18:41:16] MediVault application started.
+[2026-05-18 18:41:24] Login successful — user: admin | role: ADMIN
+[2026-05-18 18:45:42] MediVault application started.
+[2026-05-18 18:45:50] Login successful — user: patient1 | role: PATIENT
+[2026-05-18 18:45:53] Patient navigated to Appointment Booking interface.
+[2026-05-18 18:46:04] Patient navigated to Appointment Booking interface.
+[2026-05-18 18:46:12] Appointment request submitted: Dr. Shalini Katoch on Wednesday during 09:00 AM - 11:00 AM
+[2026-05-18 18:47:40] MediVault application started.
+[2026-05-18 18:47:50] Login successful — user: admin | role: ADMIN
+[2026-05-18 18:48:15] MediVault application started.
+[2026-05-18 18:48:35] Login successful — user: patient1 | role: PATIENT
+[2026-05-18 18:48:40] Patient navigated to Appointment Booking interface.
+[2026-05-18 18:49:05] MediVault application started.
+[2026-05-18 18:49:44] Login successful — user: patient1 | role: PATIENT
+[2026-05-18 18:50:16] Patient navigated to Appointment Booking interface.
+[2026-05-18 18:51:01] Login successful — user: admin | role: ADMIN
+[2026-05-18 18:51:32] Fetched 5 patient(s) from database.
+[2026-05-18 18:52:16] Patient added successfully: name=karan, age=22, phone=5454548458
+[2026-05-18 18:52:21] Fetched 6 patient(s) from database.
+[2026-05-18 18:53:52] Fetched 6 patient(s) from database.
+[2026-05-18 18:53:57] Fetched 6 patient(s) from database.
+[2026-05-18 18:54:03] Patient ID 3 deleted by ADMIN.
+[2026-05-18 18:54:04] Fetched 5 patient(s) from database.
+[2026-05-18 18:54:26] Fetched 5 patient(s) from database.
+[2026-05-18 18:54:57] Login successful — user: staff1 | role: STAFF
+[2026-05-18 18:55:00] Fetched 5 patient(s) from database.
+[2026-05-18 18:55:08] Fetched 5 patient(s) from database.
+[2026-05-18 18:55:12] Access Denied: Role 'staff' tried to delete ID 5
+[2026-05-18 18:55:26] Fetched 5 patient(s) from database.
+[2026-05-18 18:59:31] MediVault application started.
+[2026-05-18 18:59:38] Login successful — user: admin | role: ADMIN
+[2026-05-18 19:00:17] Admin registering patient: karan randi | Condition: gand ka keeda | Assigned to: Dr. Shalini Katoch
+[2026-05-18 19:00:26] Fetched 5 patient(s) from database.
+[2026-05-18 19:00:49] Fetched 5 patient(s) from database.
+[2026-05-18 19:07:30] MediVault application started.
+[2026-05-18 19:10:47] Login successful — user: admin | role: ADMIN
+[2026-05-18 19:27:15] MediVault application started.
+[2026-05-18 19:28:58] Login failed — invalid credentials for user: admin
+[2026-05-18 19:29:12] Login successful — user: admin | role: ADMIN
+[2026-05-18 19:30:21] Fetched 5 patient(s) from database.
+[2026-05-18 19:45:29] MediVault application started.
+[2026-05-18 20:09:41] MediVault application started.
+[2026-05-18 20:09:47] Login successful — user: admin | role: ADMIN
+[2026-05-18 20:23:29] MediVault application started.
+[2026-05-18 20:23:36] Login successful — user: admin | role: ADMIN
+[2026-05-18 20:23:46] ERROR: getAllPatients SQL failure — Unknown column 'contact' in 'field list'
+[2026-05-18 20:24:22] Admin registering patient: manas | Condition: cough | Assigned to: Dr. Arsh Sharma
+[2026-05-18 20:24:27] ERROR: getAllPatients SQL failure — Unknown column 'contact' in 'field list'
+[2026-05-18 20:24:39] Database Error during search: Unknown column 'contact' in 'field list'
+[2026-05-18 20:24:46] ERROR: getAllPatients SQL failure — Unknown column 'contact' in 'field list'
+[2026-05-18 20:28:34] MediVault application started.
+[2026-05-18 20:28:40] Login successful — user: admin | role: ADMIN
+[2026-05-18 20:29:07] Admin registering patient: manas | Condition: cough | Assigned to: Dr. Arsh Sharma
+[2026-05-18 20:29:10] Fetched 0 patient records from MySQL.
+[2026-05-18 20:38:18] MediVault application started.
+[2026-05-18 20:38:25] Login successful — user: admin | role: ADMIN
+[2026-05-18 20:38:51] Patient added successfully: Manas
+[2026-05-18 20:38:51] Admin registered patient: Manas | Assigned to: Dr. Shalini Katoch
+[2026-05-18 20:38:59] Fetched 1 patient records from MySQL.
+[2026-05-18 20:40:07] Login successful — user: patient1 | role: PATIENT
+[2026-05-18 20:40:09] Patient navigated to Appointment Booking interface.
+[2026-05-18 20:44:23] MediVault application started.
+[2026-05-18 20:44:32] Login successful — user: admin | role: ADMIN
+[2026-05-18 20:50:51] MediVault application started.
+[2026-05-18 20:50:59] Login successful — user: admin | role: ADMIN
+[2026-05-18 20:51:20] Fetched 1 patient records from MySQL.
+[2026-05-18 20:51:25] Fetched 1 patient records from MySQL.
+[2026-05-18 20:55:40] MediVault application started.
+[2026-05-18 20:55:47] Login successful — user: admin | role: ADMIN
+[2026-05-18 20:55:54] Fetched 1 patient records from MySQL.
+[2026-05-18 20:58:59] MediVault application started.
+[2026-05-18 21:00:08] MediVault application started.
+[2026-05-18 21:00:16] Login successful — user: admin | role: ADMIN
+[2026-05-18 21:01:02] Patient added successfully: rishav
+[2026-05-18 21:01:02] Admin registered patient: rishav | Assigned to: Dr. Arsh Sharma
+[2026-05-18 21:01:09] Fetched 2 patient records from MySQL.
+[2026-05-18 21:01:41] Login successful — user: patient1 | role: PATIENT
+[2026-05-18 21:01:52] Patient navigated to Appointment Booking interface.
+[2026-05-18 21:01:59] MediVault application started.
+[2026-05-18 21:02:06] Login successful — user: admin | role: ADMIN
